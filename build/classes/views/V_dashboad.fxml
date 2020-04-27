@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="808.0" prefWidth="1254.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.C_dashboad">
+   <children>
+      <BorderPane layoutX="362.0" layoutY="127.0" prefHeight="808.0" prefWidth="1312.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <AnchorPane prefHeight="79.0" prefWidth="1254.0" styleClass="top_bar" stylesheets="@style.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Text fx:id="lblLogin" fill="#06adf5" layoutX="119.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="login">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="lblProfil" fill="#0bb0e0" layoutX="591.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="profil">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="lblLogin2" fill="#09e17c" layoutX="43.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bonjour,">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Label fx:id="btnDeconnection" layoutX="1062.0" layoutY="8.0" onMouseClicked="#handleDeconnection" prefHeight="35.0" prefWidth="181.0" style="-fx-background-color: red;" text="Se déconnecter" textFill="#fcf8f8">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                   
+                  </Label>
+                  <FontAwesomeIconView fill="#fff6f6" glyphName="USER" layoutX="18.0" layoutY="37.0" size="25" />
+               </children>
+            </AnchorPane>
+         </top>
+         <left>
+            <AnchorPane prefHeight="729.0" prefWidth="257.0" styleClass="side_bar" stylesheets="@style.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane fx:id="panelSecurite" layoutX="-2.0" layoutY="151.0" prefHeight="131.0" prefWidth="260.0" style="-fx-background-color: grey;">
+                     <children>
+                        <Hyperlink fx:id="linkProfil" layoutX="39.0" layoutY="32.0" onAction="#handleShowViewProfil" prefHeight="35.0" prefWidth="69.0" text="Profil" textFill="#08f524">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Hyperlink>
+                        <Hyperlink fx:id="linkUtilisateur" layoutX="39.0" layoutY="73.0" onAction="#handleShowViewUser" stylesheets="@style.css" text="Utilisateur" textFill="#03f24b">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Hyperlink>
+                        <Label layoutX="28.0" layoutY="2.0" text="Sécurité" textFill="#bed04c">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <FontAwesomeIconView fill="#f5eeee" glyphName="LIST" layoutX="6.0" layoutY="25.0" size="15" />
+                        <FontAwesomeIconView fill="#f5f3f3" glyphName="USERS" layoutX="27.0" layoutY="100.0" />
+                        <FontAwesomeIconView fill="#fcfafa" glyphName="FILE" layoutX="27.0" layoutY="59.0" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="panelParametrage" layoutX="-7.0" layoutY="291.0" prefHeight="188.0" prefWidth="266.0" style="-fx-background-color: grey;">
+                     <children>
+                        <Hyperlink fx:id="linkGuichet" layoutX="45.0" layoutY="32.0" onAction="#handleShowViewGuichet" text="Guichet" textFill="#09f230">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Hyperlink>
+                        <Hyperlink fx:id="linkAgence" layoutX="47.0" layoutY="66.0" onAction="#handleShowViewAgence" text="Agence" textFill="#05ff43">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Hyperlink>
+                        <Hyperlink fx:id="linkAffectationAgence" layoutX="47.0" layoutY="105.0" onAction="#handleShowViewAffectAgence" text="Affectation agence" textFill="#0be033">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Hyperlink>
+                        <Hyperlink fx:id="linkAffectationGuichet" layoutX="49.0" layoutY="143.0" onAction="#handleShowViewAffectGuichet" stylesheets="@style.css" text="Affectation guichet" textFill="#05eb1c">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Hyperlink>
+                        <Label layoutX="34.0" layoutY="1.0" text="Paramétrage" textFill="#cfd346">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <FontAwesomeIconView fill="#f5eeee" glyphName="LIST" layoutX="12.0" layoutY="25.0" size="15" />
+                        <FontAwesomeIconView fill="#fcfcfc" glyphName="FOLDER" layoutX="28.0" layoutY="58.0" />
+                        <FontAwesomeIconView fill="#fcfcfc" glyphName="FOLDER" layoutX="28.0" layoutY="93.0" />
+                        <FontAwesomeIconView fill="#fcfcfc" glyphName="FOLDER" layoutX="28.0" layoutY="132.0" />
+                        <FontAwesomeIconView fill="#fcfcfc" glyphName="FOLDER" layoutX="28.0" layoutY="170.0" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="panelTransaction" layoutX="-1.0" layoutY="489.0" prefHeight="188.0" prefWidth="259.0" style="-fx-background-color: grey;">
+                     <children>
+                        <Hyperlink fx:id="linkClient" layoutX="41.0" layoutY="73.0" onAction="#handleShowViewClient" text="Client" textFill="#09ff5b">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Hyperlink>
+                        <Hyperlink fx:id="linkCompte" layoutX="45.0" layoutY="146.0" onAction="#handleShowViewCompte" text="Liste des comptes" textFill="#0aee28">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Hyperlink>
+                        <Hyperlink fx:id="linkTransaction" layoutX="40.0" layoutY="36.0" onAction="#handleShowViewTransaction" text="Transaction" textFill="#03f849">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Hyperlink>
+                        <Label layoutX="25.0" layoutY="2.0" text="Transaction" textFill="#d9e51c">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Hyperlink fx:id="linkAddCompte" layoutX="45.0" layoutY="108.0" onAction="#handleShowViewAddCompte" text="AddCompte" textFill="#09ff5b">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Hyperlink>
+                        <FontAwesomeIconView fill="#f5eeee" glyphName="LIST" layoutX="5.0" layoutY="26.0" size="15" />
+                        <FontAwesomeIconView fill="#fcfcfc" glyphName="FOLDER" layoutX="25.0" layoutY="172.0" />
+                        <FontAwesomeIconView fill="#fcfcfc" glyphName="FOLDER" layoutX="25.0" layoutY="62.0" />
+                        <FontAwesomeIconView fill="#fcfcfc" glyphName="FOLDER" layoutX="25.0" layoutY="99.0" />
+                        <FontAwesomeIconView fill="#fcfcfc" glyphName="FOLDER" layoutX="25.0" layoutY="134.0" />
+                     </children>
+                  </Pane>
+                  <Label layoutX="31.0" layoutY="5.0" text="Dashboard" textFill="#fffbfb">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIconView fill="#f8f6f6" glyphName="DASHBOARD" layoutX="4.0" layoutY="29.0" size="20" wrappingWidth="12.0" />
+                  <Pane fx:id="panelClient" layoutX="1.0" layoutY="37.0" prefHeight="105.0" prefWidth="256.0" style="-fx-background-color: grey;">
+                     <children>
+                        <Hyperlink fx:id="linkMesComptes" layoutX="40.0" layoutY="51.0" onAction="#handleShowViewTransaction" text="Mes comptes" textFill="#03f849">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Hyperlink>
+                        <Label layoutX="25.0" layoutY="14.0" text="Client" textFill="#d9e51c">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <FontAwesomeIconView fill="#f5eeee" glyphName="USER" layoutX="5.0" layoutY="38.0" size="15" />
+                        <FontAwesomeIconView fill="#fcfcfc" glyphName="FOLDER" layoutX="25.0" layoutY="77.0" />
+                     </children>
+                  </Pane>
+               </children></AnchorPane>
+         </left>
+         <center>
+            <AnchorPane fx:id="anchorContent" prefHeight="729.0" prefWidth="981.0" styleClass="center" stylesheets="@style.css" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="6.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@ressources/0_groupe.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="714.0" prefWidth="983.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.C_profil">
+   <children>
+      <Label layoutX="88.0" layoutY="85.0" text="Libelle">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtLibelle" layoutX="170.0" layoutY="85.0" prefHeight="51.0" prefWidth="249.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <Label layoutX="435.0" layoutY="87.0" text="Description">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtDescription" layoutX="567.0" layoutY="85.0" prefHeight="51.0" prefWidth="249.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <TableView fx:id="tvProfils" layoutX="94.0" layoutY="163.0" prefHeight="385.0" prefWidth="862.0">
+        <columns>
+          <TableColumn fx:id="colNum" prefWidth="83.0" text="N°" />
+          <TableColumn fx:id="colLibelle" prefWidth="388.0" text="Libelle" />
+            <TableColumn fx:id="colDescription" prefWidth="346.0" text="Description" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnAjout" layoutX="832.0" layoutY="82.0" mnemonicParsing="false" onAction="#handleSaveProfil" prefHeight="35.0" prefWidth="121.0" styleClass="btn-connexion" stylesheets="@style.css" text="Ajouter" textFill="#1f2022">
+         <font>
+            <Font size="24.0" />
+         </font></Button>
+   </children>
+</AnchorPane>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="717.0" prefWidth="1258.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.C_utilisateur">
+   <children>
+      <TableView fx:id="tblvUtilisateur" layoutX="274.0" layoutY="69.0" prefHeight="474.0" prefWidth="696.0">
+         <columns>
+            <TableColumn fx:id="colId" prefWidth="58.0" text="N°" />
+            <TableColumn fx:id="colNom" prefWidth="156.0" text="Nom" />
+            <TableColumn fx:id="colPrenom" prefWidth="143.0" text="Prénom" />
+            <TableColumn fx:id="colLogin" prefWidth="132.0" text="Login" />
+            <TableColumn fx:id="colEtat" prefWidth="81.0" text="Etat" />
+            <TableColumn fx:id="colProfil" prefWidth="125.0" text="Profil" />
+         </columns>
+      </TableView>
+      <JFXTextField fx:id="txtNom" focusColor="#2c2a29" labelFloat="true" layoutX="31.0" layoutY="86.0" prefHeight="31.0" prefWidth="223.0" promptText="Nom" unFocusColor="#2c03f8">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="txtPrenom" labelFloat="true" layoutX="31.0" layoutY="148.0" prefHeight="31.0" prefWidth="223.0" promptText="Prénom" unFocusColor="#2c03f8">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXComboBox fx:id="cboProfil" labelFloat="true" layoutX="35.0" layoutY="475.0" prefHeight="31.0" prefWidth="223.0" promptText="Profil" unFocusColor="#490cf2" />
+      <JFXButton fx:id="btnSave" layoutX="146.0" layoutY="526.0" onAction="#handleSaveUser" prefHeight="37.0" prefWidth="105.0" style="-fx-background-color: green;" text="Enrégistrer" textFill="#f5f4f4">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnAnnuler" layoutX="34.0" layoutY="526.0" prefHeight="37.0" prefWidth="105.0" style="-fx-background-color: red;" text="Annuler" textFill="#f5f4f4">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXTextField fx:id="txtLogin" labelFloat="true" layoutX="33.0" layoutY="210.0" prefHeight="31.0" prefWidth="223.0" promptText="Login" unFocusColor="#2c03f8">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXComboBox fx:id="cboEtat" labelFloat="true" layoutX="34.0" layoutY="345.0" prefHeight="31.0" prefWidth="223.0" promptText="Etat" unFocusColor="#490cf2" />
+      <JFXPasswordField fx:id="txtPassword" labelFloat="true" layoutX="32.0" layoutY="280.0" prefHeight="31.0" prefWidth="223.0" promptText="Password" />
+      <JFXComboBox fx:id="cboAgence" labelFloat="true" layoutX="35.0" layoutY="408.0" prefHeight="31.0" prefWidth="223.0" promptText="Agence" unFocusColor="#490cf2" />
+   </children>
+</AnchorPane>
