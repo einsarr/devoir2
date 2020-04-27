@@ -98,6 +98,7 @@ public class C_dashboad implements Initializable {
             panelTransaction.setDisable(false);
         }else if(boolRespAg)
         {
+            panelSecurite.setDisable(false);
             panelParametrage.setDisable(false);
             panelTransaction.setDisable(false);
         }else if(boolClient)

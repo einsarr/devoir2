@@ -180,6 +180,21 @@ public class C_add_compte implements Initializable {
                     CompteCheck cptC = new CompteCheck(frais, compte);
                     transS.creerCompte(cptC);
                 }
+                else{
+                    CompteEpargne cptE = new CompteEpargne(taux, compte);
+                    transS.creerCompte(cptE);
+                }
+            }
+        }
+        else{
+            if(typeCompte.compareToIgnoreCase("COMPTE CHECK")==0)
+            {
+                CompteCheck cptC = new CompteCheck(frais, compte, client, etat);
+                transS.creerCompte(cptC);
+            }
+            else{
+                CompteEpargne cptE = new CompteEpargne(taux, compte, client, etat);
+                transS.creerCompte(cptE);
             }
         }
     }
