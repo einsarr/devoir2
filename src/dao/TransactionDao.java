@@ -10,6 +10,7 @@ public class TransactionDao implements IDao<Transaction> {
     private final String SQL_FINDALL = "SELECT * FROM transaction";
     private final String SQL_UPDATE  = "UPDATE transaction SET agence_id=?,compte_id=?,montant=?,type=? WHERE id=?";
     private final String SQL_FIND    = "SELECT * FROM transaction WHERE id=?";
+    private final String SQL_FIND_BY_CLIENT   = "SELECT * FROM transaction WHERE compte_id IN(SELECT id FROM compte WHERE client_id=?)";
     private ISGBD mysql;
     private CompteDao cdao;
     private GuichetDao gdao;
@@ -18,7 +19,30 @@ public class TransactionDao implements IDao<Transaction> {
         cdao = new CompteDao(mysql);
         gdao = new GuichetDao(mysql);
     }
-
+    public List<Transaction> mesOperations(Client client)
+    {
+        mysql.initPS(SQL_FIND_BY_CLIENT);
+        List<Transaction> transactions = new ArrayList<>();
+        try {
+            mysql.getPstm().setInt(1,client.getId());
+            ResultSet rs=mysql.executeSelect();
+            while(rs.next()){
+                Transaction t=new Transaction();
+                t.setId(rs.getInt("id"));
+                t.setMontant(rs.getInt("montant"));
+                t.setType(rs.getString("type"));
+                int guichet_id = rs.getInt("guichet_id");
+                t.setGuichet(gdao.findById(guichet_id));
+                int compte_id = rs.getInt("compte_id");
+                t.setCompte(cdao.findById(compte_id));
+                transactions.add(t);
+              }
+        } catch (SQLException ex) {
+            Logger.getLogger(TransactionDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        mysql.CloseConnection();
+        return transactions;
+    }
     @Override
     public int create(Transaction objet) {
         mysql.initPS(SQL_INSERT);

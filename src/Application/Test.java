@@ -2,10 +2,7 @@ package Application;
 import models.*;
 import dao.*;
 import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import models.*;
@@ -22,7 +19,7 @@ public class Test {
         RessourceService r = new RessourceService();
         TransactionService t = new TransactionService();
         //ClientDao cdao = new ClientDao(new DaoMysql());
-        GuichetDao gdao = new GuichetDao(new DaoMysql());
+        /*GuichetDao gdao = new GuichetDao(new DaoMysql());
         CompteDao cdao = new CompteDao(new DaoMysql());
         List<Transaction> listeTrans = new ArrayList<>();
         Guichet guichet = gdao.findById(2);
@@ -35,8 +32,17 @@ public class Test {
         Transaction trans1 = new Transaction(20000, "Depot", guichet, compte);
         Transaction trans2 = new Transaction(20000, "Retrait", guichet, compte2);
         System.out.println(t.faireTransactionVir(trans1,trans2));
+        */
         
+        ClientDao cldao = new ClientDao(new DaoMysql());
         
+        Client cl = cldao.findById(1);
+        
+        List<Transaction> listeT = t.listeTransactionsByClient(cl);
+        
+        for( Transaction value : listeT ) {
+            System.out.println(value.toString());
+        }
         
         /*Profil p = new Profil("Admin", "Administrateur");
         Utilisateur u = r.seConnecter("canfndeye", "canfndeye");

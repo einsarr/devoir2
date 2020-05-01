@@ -23,4 +23,7 @@ public interface ITransaction {
     public List<Compte> listeComptes();
     public List<Transaction> listeTransactions();
     public List<Client> listeClients();
+    public List<Transaction> listeTransactionsByClient(Client client);
+    
+    public Client clientByUser(int user_id);
 }

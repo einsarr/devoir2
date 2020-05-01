@@ -10,6 +10,7 @@ public class ClientDao implements IDao<Client> {
     private final String SQL_FINDALL = "SELECT * FROM client";
     private final String SQL_UPDATE  = "UPDATE client SET user_id=?,adresse=?,cni=?,telephone=?,email=? WHERE idClient=?";
     private final String SQL_FIND    = "SELECT * FROM client WHERE idClient=?";
+    private final String SQL_FIND_CLIENT_USER    = "SELECT * FROM client WHERE user_id=?";
     private ISGBD mysql;
     private UtilisateurDao udao;
     public ClientDao(ISGBD mysql){
@@ -37,6 +38,7 @@ public class ClientDao implements IDao<Client> {
         mysql.CloseConnection();
         return id;
     }
+   
 
     @Override
     public int update(Client objet) {
@@ -93,6 +95,22 @@ public class ClientDao implements IDao<Client> {
             if(rs.first()){
                 int user_id = rs.getInt("user_id");
                 client = new Client(idClient, rs.getString("adresse"), rs.getString("cni"), rs.getString("telephone")
+                        , rs.getString("email"), udao.findById(user_id));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClientDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        mysql.CloseConnection();
+        return client;
+    }
+    public Client findByUser(int user_id) {
+        mysql.initPS(SQL_FIND_CLIENT_USER);
+        Client client=new Client();
+        try {
+            mysql.getPstm().setInt(1,user_id);
+            ResultSet rs=mysql.executeSelect();
+            if(rs.first()){
+                client = new Client(rs.getInt("ClientId"), rs.getString("adresse"), rs.getString("cni"), rs.getString("telephone")
                         , rs.getString("email"), udao.findById(user_id));
             }
         } catch (SQLException ex) {

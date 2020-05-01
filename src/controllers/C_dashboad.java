@@ -165,5 +165,10 @@ public class C_dashboad implements Initializable {
     private void handleShowViewAddCompte(ActionEvent event) throws IOException{
         utilitaire.showView(anchorContent, "V_add_compte");
     }
+
+    @FXML
+    private void handleShowViewTransactionClient(ActionEvent event) throws IOException {
+        utilitaire.showView(anchorContent, "handleShowViewTransactionClient");
+    }
     
 }

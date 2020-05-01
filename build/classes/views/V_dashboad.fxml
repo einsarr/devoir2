@@ -143,7 +143,7 @@
                   <FontAwesomeIconView fill="#f8f6f6" glyphName="DASHBOARD" layoutX="4.0" layoutY="29.0" size="20" wrappingWidth="12.0" />
                   <Pane fx:id="panelClient" layoutX="1.0" layoutY="37.0" prefHeight="105.0" prefWidth="256.0" style="-fx-background-color: grey;">
                      <children>
-                        <Hyperlink fx:id="linkMesComptes" layoutX="40.0" layoutY="51.0" onAction="#handleShowViewTransaction" text="Mes comptes" textFill="#03f849">
+                        <Hyperlink fx:id="linkMesComptes" layoutX="40.0" layoutY="51.0" onAction="#handleShowViewTransactionClient" text="Mes comptes" textFill="#03f849">
                            <font>
                               <Font size="24.0" />
                            </font>

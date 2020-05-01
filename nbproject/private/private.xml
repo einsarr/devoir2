@@ -3,14 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/ISI/DITI4/JAVA/projets/DevoirN2/src/models/Transaction.java</file>
-            <file>file:/D:/ISI/DITI4/JAVA/projets/DevoirN2/src/controllers/C_transaction.java</file>
-            <file>file:/D:/ISI/DITI4/JAVA/projets/DevoirN2/src/dao/TransactionDao.java</file>
-            <file>file:/D:/ISI/DITI4/JAVA/projets/DevoirN2/src/controllers/C_agence.java</file>
-            <file>file:/D:/ISI/DITI4/JAVA/projets/DevoirN2/src/Application/Test.java</file>
-            <file>file:/D:/ISI/DITI4/JAVA/projets/DevoirN2/src/services/TransactionService.java</file>
-            <file>file:/D:/ISI/DITI4/JAVA/projets/DevoirN2/src/controllers/C_login.java</file>
-            <file>file:/D:/ISI/DITI4/JAVA/projets/DevoirN2/src/utilitaire/UtilitaireFX.java</file>
+            <file>file:/D:/ISI/DITI4/JAVA/projets/DevoirN2/src/controllers/C_add_compte.java</file>
+            <file>file:/D:/ISI/DITI4/JAVA/projets/DevoirN2/src/models/Utilisateur.java</file>
+            <file>file:/D:/ISI/DITI4/JAVA/projets/DevoirN2/src/dao/UtilisateurDao.java</file>
+            <file>file:/D:/ISI/DITI4/JAVA/projets/DevoirN2/src/models/CompteCheck.java</file>
+            <file>file:/D:/ISI/DITI4/JAVA/projets/DevoirN2/src/controllers/C_compte.java</file>
+            <file>file:/D:/ISI/DITI4/JAVA/projets/DevoirN2/src/controllers/C_dashboad.java</file>
         </group>
     </open-files>
 </project-private>

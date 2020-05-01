@@ -146,6 +146,15 @@ public class TransactionService implements ITransaction{
     public List<Client> listeClients() {
         return clDao.findAll();
     }
-    
+
+    @Override
+    public List<Transaction> listeTransactionsByClient(Client client) {
+        return tdao.mesOperations(client);
+    }
+
+    @Override
+    public Client clientByUser(int user_id) {
+        return clDao.findByUser(user_id);
+    }
     
 }
