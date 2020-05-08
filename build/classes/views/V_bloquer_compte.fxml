@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="746.0" prefWidth="944.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="controllers.C_bloquer_compte">
+   <children>
+      <JFXTextField fx:id="txtNom" disable="true" focusColor="#2c2a29" labelFloat="true" layoutX="41.0" layoutY="121.0" prefHeight="37.0" prefWidth="262.0" promptText="Nom" unFocusColor="#2c03f8">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton fx:id="btnBloquer" layoutX="303.0" layoutY="526.0" onAction="#handleBloquerCompte" prefHeight="51.0" prefWidth="262.0" style="-fx-background-color: red;" text="Bloquer le compte" textFill="#f5f4f4">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </JFXButton>
+      <JFXTextField fx:id="txtPrenom" disable="true" focusColor="#2c2a29" labelFloat="true" layoutX="41.0" layoutY="201.0" prefHeight="37.0" prefWidth="262.0" promptText="Prénom" unFocusColor="#2c03f8">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="txtLogin" disable="true" focusColor="#2c2a29" labelFloat="true" layoutX="41.0" layoutY="274.0" prefHeight="37.0" prefWidth="262.0" promptText="Login" unFocusColor="#2c03f8">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="txtCNI" disable="true" labelFloat="true" layoutX="554.0" layoutY="218.0" prefHeight="37.0" prefWidth="262.0" promptText="CNI" unFocusColor="#2c03f8">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="txtAdresse" disable="true" focusColor="#2c2a29" labelFloat="true" layoutX="555.0" layoutY="414.0" prefHeight="37.0" prefWidth="262.0" promptText="Adresse" unFocusColor="#2c03f8">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="txtTelephone" disable="true" focusColor="#2c2a29" labelFloat="true" layoutX="553.0" layoutY="128.0" prefHeight="37.0" prefWidth="262.0" promptText="Téléphone" unFocusColor="#2c03f8">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="txtEmail" disable="true" focusColor="#2c2a29" labelFloat="true" layoutX="41.0" layoutY="414.0" prefHeight="37.0" prefWidth="262.0" promptText="Email" unFocusColor="#2c03f8">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="txtSearchNumero" focusColor="#2c2a29" labelFloat="true" layoutX="320.0" layoutY="45.0" prefHeight="39.0" prefWidth="288.0" promptText="Rechercher par numéro de compte" unFocusColor="#2c03f8">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXTextField>
+      <Button fx:id="btnOk" layoutX="621.0" layoutY="49.0" mnemonicParsing="false" onAction="#handleRechercheCompte" prefHeight="37.0" prefWidth="65.0" style="-fx-background-color: blue;" text="OK" textFill="#fcfafa">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <JFXTextField fx:id="txtSolde" disable="true" focusColor="#2c2a29" labelFloat="true" layoutX="553.0" layoutY="311.0" prefHeight="37.0" prefWidth="262.0" promptText="Solde" unFocusColor="#2c03f8">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXPasswordField fx:id="txtPassword" disable="true" labelFloat="true" layoutX="41.0" layoutY="342.0" prefHeight="37.0" prefWidth="262.0" promptText="Password" unFocusColor="#6f8ada" />
+   </children>
+</AnchorPane>

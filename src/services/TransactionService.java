@@ -22,21 +22,31 @@ public class TransactionService implements ITransaction{
         cddao = new CompteEpargneDao(new DaoMysql());
     }
     @Override
-    public int faireTransaction(List<Transaction> transactions) {
+    public String faireTransaction(List<Transaction> transactions) {
+        String message="";
         List<Transaction> liste = new ArrayList<>();
         for(Transaction t : transactions)
         {
             if(t.getType().compareToIgnoreCase("retrait")==0)
             {
                 if(t.getCompte().getEtat().compareToIgnoreCase("actif")==0)
-                cdao.debiterCompte(t.getCompte(), t.getMontant());
-                else System.err.print("Le compte est désactivé");
+                {
+                    cdao.debiterCompte(t.getCompte(), t.getMontant());
+                    message = "Transaction réussie";
+                }
+                else{
+                    message ="Le compte est bloqué";
+                }
             }
             if(t.getType().compareToIgnoreCase("depot")==0)
             {
-                if(t.getCompte().getEtat().compareToIgnoreCase("actif")==0)
-                cdao.crediterCompte(t.getCompte(), t.getMontant());
-                else System.err.print("Le compte est désactivé");
+                if(t.getCompte().getEtat().compareToIgnoreCase("actif")==0){
+                    cdao.crediterCompte(t.getCompte(), t.getMontant());
+                    message = "Transaction réussie";
+                }              
+                else{
+                     message ="Le compte est bloqué";
+                }
             }
             /*
             if(t.getType().compareToIgnoreCase("virement")==0)
@@ -47,7 +57,8 @@ public class TransactionService implements ITransaction{
             }*/
             liste.add(t);
         }
-        return tdao.faireTransaction(liste);
+        tdao.faireTransaction(liste);
+        return message;
     }
     
     
@@ -58,7 +69,7 @@ public class TransactionService implements ITransaction{
     }
     public int faireRetrait(Transaction transaction)
     {
-        cdao.crediterCompte(transaction.getCompte(), transaction.getMontant());
+        cdao.debiterCompte(transaction.getCompte(), transaction.getMontant());
         return tdao.create(transaction);
     }
     @Override
@@ -144,7 +155,15 @@ public class TransactionService implements ITransaction{
 
     @Override
     public List<Client> listeClients() {
-        return clDao.findAll();
+        List<Client> liste=new ArrayList<>();
+        for(Client cl:clDao.findAll())
+        {
+            if(cl.getUser().getProfil().getLibelle().compareToIgnoreCase("client")==0)
+            {
+                liste.add(cl) ;          
+            }
+        }
+        return liste;
     }
 
     @Override

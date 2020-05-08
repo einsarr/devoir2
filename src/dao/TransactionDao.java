@@ -10,7 +10,8 @@ public class TransactionDao implements IDao<Transaction> {
     private final String SQL_FINDALL = "SELECT * FROM transaction";
     private final String SQL_UPDATE  = "UPDATE transaction SET agence_id=?,compte_id=?,montant=?,type=? WHERE id=?";
     private final String SQL_FIND    = "SELECT * FROM transaction WHERE id=?";
-    private final String SQL_FIND_BY_CLIENT   = "SELECT * FROM transaction WHERE compte_id IN(SELECT id FROM compte WHERE client_id=?)";
+    private final String SQL_FIND_BY_CLIENT   = "SELECT * FROM transaction WHERE compte_id IN(SELECT id FROM compte WHERE client_id"
+            + "IN (SELECT id from client)";
     private ISGBD mysql;
     private CompteDao cdao;
     private GuichetDao gdao;
@@ -24,15 +25,12 @@ public class TransactionDao implements IDao<Transaction> {
         mysql.initPS(SQL_FIND_BY_CLIENT);
         List<Transaction> transactions = new ArrayList<>();
         try {
-            mysql.getPstm().setInt(1,client.getId());
             ResultSet rs=mysql.executeSelect();
             while(rs.next()){
                 Transaction t=new Transaction();
                 t.setId(rs.getInt("id"));
                 t.setMontant(rs.getInt("montant"));
                 t.setType(rs.getString("type"));
-                int guichet_id = rs.getInt("guichet_id");
-                t.setGuichet(gdao.findById(guichet_id));
                 int compte_id = rs.getInt("compte_id");
                 t.setCompte(cdao.findById(compte_id));
                 transactions.add(t);
@@ -132,6 +130,7 @@ public class TransactionDao implements IDao<Transaction> {
                 aff.setId(rs.getInt("id"));
                 aff.setMontant(rs.getInt("montant"));
                 aff.setType(rs.getString("type"));
+                aff.setCreatedAt(rs.getDate("createdAt"));
                 int guichet_id = rs.getInt("guichet_id");
                 aff.setGuichet(gdao.findById(guichet_id));
                 int compte_id = rs.getInt("compte_id");

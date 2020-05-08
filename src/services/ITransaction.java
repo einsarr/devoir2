@@ -16,7 +16,7 @@ import models.*;
 public interface ITransaction {
     public int creerCompte(Compte compte);
     public int bloquerCompte(Compte compte);
-    public int faireTransaction(List<Transaction> transactions);
+    public String faireTransaction(List<Transaction> transactions);
     public List<Transaction> etatPeriodTransAgenceCompteCaisse(Date dateD,Date dateF,Agence agence,Compte compte,Utilisateur caissier);
     public List<Transaction> historiqueTransacCptClient(Client client,Compte compte);
     public Compte rechercherCompteParNumero(String numero);

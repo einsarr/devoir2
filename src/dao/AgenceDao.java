@@ -11,6 +11,7 @@ public class AgenceDao implements IDao<Agence> {
     private final String SQL_UPDATE  = "UPDATE agence SET libelle=?,telephone=?,email=?"
             + ",adresse=? WHERE id=?";
     private final String SQL_FIND    = "SELECT * FROM agence WHERE id=?";
+    private final String SQL_FIND_LIBELLE    = "SELECT * FROM agence WHERE libelle=?";
     private ISGBD mysql;
     public AgenceDao(ISGBD mysql){
         this.mysql = mysql; 
@@ -87,6 +88,26 @@ public class AgenceDao implements IDao<Agence> {
                 result=new Agence();
                 result.setId(rs.getInt("id"));
                 result.setLibelle(rs.getString("libelle"));
+                result.setTelephone(rs.getString("telephone"));
+                result.setEmail(rs.getString("email"));
+                result.setAdresse(rs.getString("adresse"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AgenceDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        mysql.CloseConnection();
+        return result;
+    }
+    public Agence rechercherAgenceParLibelle(String libelle) {
+        mysql.initPS(SQL_FIND_LIBELLE);
+        Agence result=null;
+        try {
+            mysql.getPstm().setString(1,libelle);
+            ResultSet rs=mysql.executeSelect();
+            if(rs.first()){
+                result=new Agence();
+                result.setId(rs.getInt("id"));
+                result.setLibelle(libelle);
                 result.setTelephone(rs.getString("telephone"));
                 result.setEmail(rs.getString("email"));
                 result.setAdresse(rs.getString("adresse"));

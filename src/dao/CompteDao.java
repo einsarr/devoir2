@@ -13,13 +13,15 @@ public class CompteDao implements IDao<Compte> {
     private final String SQL_DEBITER_COMPTE  = "UPDATE compte SET solde=solde - ? WHERE id=?";
     private final String SQL_CREDITER_COMPTE  = "UPDATE compte SET solde=solde + ? WHERE id=?";
     private final String SQL_BLOQUER_COMPTE  = "UPDATE compte SET etat=? WHERE id=?";
-     private final String RECHERCHER_COMPTE    = "SELECT * FROM compte WHERE numero=?";
+    private final String RECHERCHER_COMPTE    = "SELECT * FROM compte WHERE numero=?";
+    
     private ISGBD mysql;
     private ClientDao cdao;
     public CompteDao(ISGBD mysql){
         this.mysql = mysql;
         cdao = new ClientDao(mysql);
     }
+    
 
     @Override
     public int create(Compte objet) {
@@ -60,8 +62,7 @@ public class CompteDao implements IDao<Compte> {
             mysql.getPstm().setString(1,objet.getEtat());
             mysql.getPstm().setInt(2,objet.getId());
             mysql.executeMaj(); 
-            ResultSet rs=mysql.getPstm().getGeneratedKeys();
-            if(rs.next()) id= rs.getInt(1);
+            id=1;
         } catch (SQLException ex) {
             Logger.getLogger(CompteDao.class.getName()).log(Level.SEVERE, null, ex);
         } 
@@ -126,6 +127,7 @@ public class CompteDao implements IDao<Compte> {
                 compte.setSolde(rs.getFloat("solde"));
                 compte.setEtat(rs.getString("etat"));
                 compte.setNumero(rs.getString("numero"));
+                compte.setCreatedAt(rs.getDate("createdAt"));
                 int client_id = rs.getInt("client_id");
                 compte.setClient(cdao.findById(client_id));
                 result.add(compte);

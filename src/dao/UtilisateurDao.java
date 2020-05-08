@@ -16,6 +16,7 @@ public class UtilisateurDao implements IDao<Utilisateur> {
             + ",adresse=? WHERE id=?";
     private final String SQL_FIND    = "SELECT * FROM utilisateur WHERE id=?";
     private final String SQL_SE_CONNECTER    = "SELECT * FROM utilisateur WHERE login=? AND password=?";
+    private final String SQL_RECHERCHE_LOGIN    = "SELECT * FROM utilisateur WHERE login=?";
     private final String SQL_BLOQUER_USER    = "UPDATE utilisateur SET etat=? WHERE id=?";
     private ISGBD mysql;
     private ProfilDao pdao;
@@ -141,6 +142,30 @@ public class UtilisateurDao implements IDao<Utilisateur> {
         Utilisateur result=null;
         try {
             mysql.getPstm().setInt(1,id);
+            ResultSet rs=mysql.executeSelect();
+            if(rs.first()){
+                result=new Utilisateur();
+                result.setId(rs.getInt("id"));
+                result.setNom(rs.getString("nom"));
+                result.setPrenom(rs.getString("prenom"));
+                result.setLogin(rs.getString("login"));
+                result.setPassword(rs.getString("password"));
+                result.setEtat(rs.getString("etat"));
+                int profil_id = rs.getInt("profil_id");
+                result.setProfil(pdao.findById(profil_id));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        mysql.CloseConnection();
+        return result;
+    }
+    public Utilisateur rechercherUserParLogin(String login)
+    {
+        mysql.initPS(SQL_RECHERCHE_LOGIN);
+        Utilisateur result=null;
+        try {
+            mysql.getPstm().setString(1,login);
             ResultSet rs=mysql.executeSelect();
             if(rs.first()){
                 result=new Utilisateur();

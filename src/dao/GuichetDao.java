@@ -10,6 +10,7 @@ public class GuichetDao implements IDao<Guichet> {
     private final String SQL_FINDALL = "SELECT * FROM guichet";
     private final String SQL_UPDATE  = "UPDATE guichet SET agence_id=?,numero=?,description=? WHERE id=?";
     private final String SQL_FIND    = "SELECT * FROM guichet WHERE id=?";
+    private final String SQL_FIND_AGENCE    = "SELECT * FROM guichet WHERE agence_id=?";
     private ISGBD mysql;
     private AgenceDao adao;
     public GuichetDao(ISGBD mysql){
@@ -90,6 +91,26 @@ public class GuichetDao implements IDao<Guichet> {
                 int agence_id = rs.getInt("agence_id");
                 result.setAgence(adao.findById(agence_id));
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(GuichetDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        mysql.CloseConnection();
+        return result;
+    }
+    public List<Guichet> Guiches_agence(Agence agence) {
+        mysql.initPS(SQL_FIND_AGENCE);
+        List<Guichet> result=result=new ArrayList<>();
+        try {
+            mysql.getPstm().setInt(1,agence.getId());
+            ResultSet rs=mysql.executeSelect();
+              while(rs.next()){
+                Guichet guichet=new Guichet();
+                guichet.setId(rs.getInt("id"));
+                guichet.setNumero(rs.getInt("numero"));
+                guichet.setDescription(rs.getString("description"));
+                guichet.setAgence(agence);
+                result.add(guichet);
+              }
         } catch (SQLException ex) {
             Logger.getLogger(GuichetDao.class.getName()).log(Level.SEVERE, null, ex);
         }

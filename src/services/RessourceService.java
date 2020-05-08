@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -104,7 +105,15 @@ public class RessourceService implements IRessource{
 
     @Override
     public List<Utilisateur> listeUtilisateurs() {
-        return udao.findAll();
+         List<Utilisateur> liste=new ArrayList<>();
+        for(Utilisateur u:udao.findAll())
+        {
+            if(u.getProfil().getLibelle().compareToIgnoreCase("client")!=0)
+            {
+                liste.add(u) ;          
+            }
+        }
+        return liste;
     }
 
     @Override
@@ -115,6 +124,26 @@ public class RessourceService implements IRessource{
     @Override
     public List<Affectation_guichet> listeAffectationGuichets() {
         return affgdao.findAll();
+    }
+
+    @Override
+    public Profil profilClient(int id) {
+        return pdao.findById(id);
+    }
+
+    @Override
+    public Utilisateur chercherUtilisateur(String login) {
+        return udao.rechercherUserParLogin(login);
+    }
+
+    @Override
+    public List<Guichet> guichets_agence(Agence agence) {
+       return gdao.Guiches_agence(agence);
+    }
+
+    @Override
+    public Agence recherchergenceParLibelle(String libelle) {
+        return adao.rechercherAgenceParLibelle(libelle);
     }
     
 }

@@ -58,8 +58,7 @@ public class C_add_compte implements Initializable {
     private JFXTextField txtLogin;
     @FXML
     private JFXPasswordField txtPassword;
-    @FXML
-    private JFXComboBox<Profil> cboProfil;
+   
     @FXML
     private JFXTextField txtCNI;
     @FXML
@@ -84,6 +83,7 @@ public class C_add_compte implements Initializable {
     private JFXDatePicker dptDateFinBlocage;
     @FXML
     private JFXTextField txtSolde;
+    Compte cpt;
      /**
      * Initializes the controller class.
      */
@@ -91,7 +91,6 @@ public class C_add_compte implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         transS = new TransactionService();
         ressS = new RessourceService();
-        chargerComboProfil();
         chargerComboString();
         DesactiverChamps();
     } 
@@ -102,13 +101,7 @@ public class C_add_compte implements Initializable {
         cboTypeCompte.getItems().add("COMPTE CHECK");
         cboTypeCompte.getItems().add("COMPTE EPARGNE");
     }
-    public void chargerComboProfil()
-    {
-        ressS = new RessourceService();
-        List<Profil> profils=ressS.listeProfils();
-        ObservableList<Profil> ObListProfil = FXCollections.observableArrayList(profils);
-        cboProfil.setItems(ObListProfil);
-    }
+    
     public void DesactiverChamps()
     {
         txtFrais.setDisable(true);
@@ -142,15 +135,16 @@ public class C_add_compte implements Initializable {
             txtTelephone.setText(cpt.getClient().getTelephone());
             txtAdresse.setText(cpt.getClient().getAdresse());
             txtEmail.setText(cpt.getClient().getEmail());
-            cboEtat.getSelectionModel().select(cpt.getEtat());
-            cboProfil.getSelectionModel().select(cpt.getClient().getUser().getProfil().getId()-1);
+            cboEtat.getSelectionModel().select(cpt.getClient().getUser().getEtat());
+            txtNom.setDisable(true);txtPrenom.setDisable(true);txtLogin.setDisable(true);
+            txtPassword.setDisable(true);txtCNI.setDisable(true);txtTelephone.setDisable(true);
         }
     }
 
     @FXML
     private void handleSaveCompte(ActionEvent event) throws ParseException {
         String numero = txtSearchNumero.getText();
-        Compte cpt= transS.rechercherCompteParNumero(numero);
+        //Compte cpt= transS.rechercherCompteParNumero(numero);
         float solde=0,taux=0;
         int frais =0;
         Date date = new Date();
@@ -168,23 +162,20 @@ public class C_add_compte implements Initializable {
             LocalDate createdAt = dptDateFinBlocage.getValue();
             date = Date.from(createdAt.atStartOfDay(ZoneId.systemDefault()).toInstant());
         }
-        Profil p = cboProfil.getSelectionModel().getSelectedItem();
-        Client client = new Client(adresse, cni, telephone, email, nom, prenom, login, password, etat, p);
+        Profil pClient = ressS.profilClient(5);
+        Client client = new Client(adresse, cni, telephone, email, nom, prenom, login, password, etat, pClient);
         Compte compte = new Compte(numero, solde, date, client, etat);
         if(cpt!=null)
         {
-            if(cpt.getId()!=0)
+            if(typeCompte.compareToIgnoreCase("COMPTE CHECK")==0)
             {
-                if(typeCompte.compareToIgnoreCase("COMPTE CHECK")==0)
-                {
-                    CompteCheck cptC = new CompteCheck(frais, compte);
-                    transS.creerCompte(cptC);
-                }
-                else{
-                    CompteEpargne cptE = new CompteEpargne(taux, compte);
-                    transS.creerCompte(cptE);
-                }
+                CompteCheck cptC = new CompteCheck(frais, compte);
+                transS.creerCompte(cptC);
             }
+            else{
+                CompteEpargne cptE = new CompteEpargne(taux, compte);
+                transS.creerCompte(cptE);
+            }  
         }
         else{
             if(typeCompte.compareToIgnoreCase("COMPTE CHECK")==0)

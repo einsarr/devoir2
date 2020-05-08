@@ -6,6 +6,7 @@
 package controllers;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,12 +37,13 @@ private static Utilisateur userConnect;
     private TableColumn<Transaction, String> colNumero;
     @FXML
     private TableColumn<Transaction, String> colType;
-    @FXML
-    private TableView<Transaction> tblTransactionClient;
     ObservableList<Transaction> obsTransactions;
     @FXML
     private TableColumn<Transaction, String> colMontant;
     TransactionService  tserv;
+    Client client;
+    @FXML
+    private TableView<Transaction> tblTransactionsClient;
     /**
      * Initializes the controller class.
      */
@@ -52,12 +54,16 @@ private static Utilisateur userConnect;
     }    
     public void loadTableView()
     {
-        Client client = tserv.clientByUser(userConnect.getId());
-        obsTransactions =FXCollections.observableArrayList(tserv.listeTransactionsByClient(client));
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colMontant.setCellValueFactory(new PropertyValueFactory<>("montant"));
-        colNumero.setCellValueFactory(new PropertyValueFactory<>("numero"));
-        colType.setCellValueFactory(new PropertyValueFactory<>("type"));
-        tblTransactionClient.setItems(obsTransactions);
+        client = tserv.clientByUser(userConnect.getId());
+        if(client!=null)
+        {
+            obsTransactions =FXCollections.observableArrayList(tserv.listeTransactionsByClient(client));
+            colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+            colMontant.setCellValueFactory(new PropertyValueFactory<>("montant"));
+            colNumero.setCellValueFactory(new PropertyValueFactory<>("numero"));
+            colType.setCellValueFactory(new PropertyValueFactory<>("type"));
+            tblTransactionsClient.setItems(obsTransactions);
+        }
     }
+    
 }

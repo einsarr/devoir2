@@ -58,7 +58,6 @@ public class C_agence implements Initializable {
     @FXML
     private TableColumn<Agence, String>  colTelephone;
     utilitaire.UtilitaireFX utilit;
-
     /**
      * Initializes the controller class.
      */
@@ -99,4 +98,6 @@ public class C_agence implements Initializable {
         colAdresse.setCellValueFactory(new PropertyValueFactory<>("adresse"));
         tvAgences.setItems(obsAgences);
     }
+
+    
 }

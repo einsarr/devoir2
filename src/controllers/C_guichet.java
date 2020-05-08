@@ -16,6 +16,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -57,6 +58,11 @@ public class C_guichet implements Initializable {
     RessourceService ress;
     TransactionService transs;
     utilitaire.UtilitaireFX utilit;
+    @FXML
+    private JFXTextField txtSearchAgence;
+    @FXML
+    private Button btnOk;
+    Agence agence;
     /**
      * Initializes the controller class.
      */
@@ -105,5 +111,27 @@ public class C_guichet implements Initializable {
         txtDescription.clear();
         cboAgence.getSelectionModel().select(null);
     }
-    
+
+    @FXML
+    private void handleRechercheGuichet(ActionEvent event) {
+        agence =  ress.recherchergenceParLibelle(txtSearchAgence.getText());
+        if(agence!=null)
+        loadTableViewRecherche();
+        else{
+            Alert alert=new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("L'agence saisie n'existe pas");
+            alert.showAndWait();
+        }
+    }
+    public void loadTableViewRecherche()
+    {
+        obsGuichets =FXCollections.observableArrayList(ress.guichets_agence(agence));
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        colNumero.setCellValueFactory(new PropertyValueFactory<>("numero"));
+        colAgence.setCellValueFactory(new PropertyValueFactory<>("agence"));
+        tvGuichets.setItems(obsGuichets);
+    }
+
+   
 }

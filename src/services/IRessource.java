@@ -27,4 +27,8 @@ public interface IRessource {
     public List<Utilisateur> listeUtilisateurs();
     public List<Affectation_agence> listeAffectationAgences();
     public List<Affectation_guichet> listeAffectationGuichets();
+    public Profil profilClient(int id);
+    public Utilisateur chercherUtilisateur(String login);
+    public List<Guichet> guichets_agence(Agence agence);
+    public Agence recherchergenceParLibelle(String libelle);
 }

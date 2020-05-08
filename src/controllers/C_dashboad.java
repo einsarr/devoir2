@@ -72,6 +72,10 @@ public class C_dashboad implements Initializable {
     private Pane panelClient;
     @FXML
     private Hyperlink linkMesComptes;
+    @FXML
+    private Hyperlink linkBloquerUser;
+    @FXML
+    private Hyperlink linkBloquerCompte;
 
     /**
      * Initializes the controller class.
@@ -87,18 +91,24 @@ public class C_dashboad implements Initializable {
     private void verifProfil()
     {
         boolean boolCaissier = userConnect.getProfil().getLibelle().compareToIgnoreCase("caissier")==0; 
-        boolean boolRespAg = userConnect.getProfil().getLibelle().compareToIgnoreCase("Responsable d'agence")==0;
+        boolean boolRespAg = userConnect.getProfil().getLibelle().compareToIgnoreCase("Responsable_agence")==0;
         boolean boolClient = userConnect.getProfil().getLibelle().compareToIgnoreCase("Client")==0;
+        boolean boolAdmin_syst = userConnect.getProfil().getLibelle().compareToIgnoreCase("Admin_systeme")==0;
         panelParametrage.setDisable(true);
         panelSecurite.setDisable(true);
         panelTransaction.setDisable(true);
         panelClient.setVisible(false);
-        if(boolCaissier)
+        if(boolAdmin_syst)
         {
-            panelTransaction.setDisable(false);
-        }else if(boolRespAg)
-        {
+            panelParametrage.setDisable(false);
             panelSecurite.setDisable(false);
+            panelTransaction.setDisable(false);
+        }else if(boolCaissier)
+        {
+           panelTransaction.setDisable(false);
+        }
+        else if(boolRespAg)
+        {
             panelParametrage.setDisable(false);
             panelTransaction.setDisable(false);
         }else if(boolClient)
@@ -169,6 +179,20 @@ public class C_dashboad implements Initializable {
     @FXML
     private void handleShowViewTransactionClient(ActionEvent event) throws IOException {
         utilitaire.showView(anchorContent, "handleShowViewTransactionClient");
+    }
+
+    @FXML
+    private void handleShowViewBloquerUser(ActionEvent event) throws IOException {
+        utilitaire.showView(anchorContent, "V_Bloquer_user");
+    }
+
+    @FXML
+    private void handleShowViewBloquerCompte(ActionEvent event) throws IOException {
+        utilitaire.showView(anchorContent, "V_bloquer_compte");
+    }
+
+    private void handleShowViewGuichetsAgence(ActionEvent event) throws IOException {
+        utilitaire.showView(anchorContent, "V_guichet_agence");
     }
     
 }

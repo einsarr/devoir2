@@ -133,7 +133,8 @@ private static Utilisateur userConnect;
             trans1.setType("virement-");
             trans2.setType("virement+");
             id = ts.faireTransactionVir(trans1,trans2); 
-            
+            trans2.setId(id+1);
+            obsTrans.add(trans2);
         }
         if(trans1.getType().compareToIgnoreCase("retrait")==0)
         {
@@ -143,7 +144,7 @@ private static Utilisateur userConnect;
         {
             id = ts.faireDepot(trans1);
         }
-        util.messagesuccess("Opération enrégistrer avec succès");
+        util.messagesuccess("Opération enrégistrer avec succès"); 
         trans1.setId(id);
         obsTrans.add(trans1);
         clear();
